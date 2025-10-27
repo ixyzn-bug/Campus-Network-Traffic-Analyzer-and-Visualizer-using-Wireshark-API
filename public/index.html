@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Campus Network Traffic Visualizer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Campus Network Traffic Visualizer</h1>
+      <div class="muted">Analyzing network traffic (pcap mode).</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <strong>Throughput (bytes/sec)</strong>
+        <canvas id="throughputChart" height="120"></canvas>
+      </div>
+
+      <div class="card">
+        <strong>Recent packets</strong>
+        <div id="packet-list">
+          <table>
+            <thead><tr><th>Time</th><th>Src → Dst</th><th>Proto</th><th>Len</th></tr></thead>
+            <tbody id="packets"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <strong>Protocol distribution</strong>
+        <canvas id="protoChart" height="230"></canvas>
+      </div>
+
+      <div class="card">
+        <strong>Stats</strong>
+        <div class="small" style="margin-top:8px">
+          <div>Total packets: <span id="total">0</span></div>
+          <div>Total bytes: <span id="bytes">0</span></div>
+          <div>Packets/sec (avg): <span id="pps">0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
